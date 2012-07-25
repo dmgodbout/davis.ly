@@ -2,7 +2,8 @@ source 'https://rubygems.org'
 
 group :production do
   gem 'rack-google_analytics', :require => "rack/google_analytics"
-  gem 'pg'	
+  gem 'pg', '0.10.0'
+  gem 'therubyracer', '~> 0.9.3.beta1'
 end
 
 gem 'rails', '3.2.1'
