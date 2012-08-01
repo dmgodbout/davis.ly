@@ -1,13 +1,28 @@
+# == Schema Information
+#
+# Table name: users
+#
+#  id            :integer          not null, primary key
+#  email         :string(255)
+#  password_hash :string(255)
+#  password_salt :string(255)
+#  created_at    :datetime         not null
+#  updated_at    :datetime         not null
+#
+
+require 'bcrypt'
 class User < ActiveRecord::Base
-  attr_accessible :email, :password, :password_confirmation
+  attr_accessible :name, :email, :password, :password_confirmation
   
   attr_accessor :password
   before_save :encrypt_password
   
+  validates :name,  presence: true, length: { maximum: 50 }
   validates_confirmation_of :password
   validates_presence_of :password, :on => :create
   validates_presence_of :email
-  validates_uniqueness_of :email
+  validates :email, presence: true, #format: { with: VALID_EMAIL_REGEX },
+                    uniqueness: { case_sensitive: false }
   
   def self.authenticate(email, password)
     user = find_by_email(email)

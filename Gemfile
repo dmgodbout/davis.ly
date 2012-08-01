@@ -6,6 +6,7 @@ group :production do
   gem 'therubyracer', '~> 0.9.3.beta1'
 end
 
+gem 'annotate', '2.5.0', group: :development
 gem 'rails', '3.2.1'
 
 # Bundle edge Rails instead:
